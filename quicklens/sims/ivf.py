@@ -261,7 +261,7 @@ class library_l_mask(library):
 
         super(library_l_mask, self).__init__(ivf_lib.obs_lib)
         self.get_fmask = self.ivf_lib.get_fmask
-
+ 
     def hashdict(self):
         return { 'ivf_lib' : self.ivf_lib.hashdict(),
                  'lmin'    : self.lmin,
