@@ -1,4 +1,4 @@
-This repository is a copy of D.Hanson's [Quicklens code](https://github.com/dhanson/quicklens) after correcting the two items listed below:
+This repository is an ammeded version of D.Hanson's [Quicklens code](https://github.com/dhanson/quicklens). It includes the fixes listed below, and a branch translating it to Python 3 (in progress).
 
 # Fixed bugs
 ### 1) Spherical harmonic transforms for fields with non-zero spin
