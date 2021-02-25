@@ -17,7 +17,7 @@ import os, sys, hashlib
 import numpy  as np
 import pickle as pk
 
-#import healpy as hp
+import healpy as hp
 import quicklens as ql
 from . import util
 
@@ -176,7 +176,7 @@ class library_diag_full_sky(library):
             pass
         else:
             fl_to_return[0:int(lcut)] = 0
-        return #hp.sphtfunc.almxfl(alm_array, fl_to_return)
+        return hp.sphtfunc.almxfl(alm_array, fl_to_return)
 
 class library_diag_emp(library):
     """ ADDED BY ANTON BALEATO LIZANCOS ON 11/11/17. A simple inverse-variance filter which is (nearly) diagonal in Fourier space. the steps are:
