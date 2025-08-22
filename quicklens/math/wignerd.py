@@ -4,7 +4,7 @@
 # integrals using Gauss-Legendre quadrature.
 
 import numpy as np
-import cwignerd
+from . import cwignerd
 
 class gauss_legendre_quadrature:
     """

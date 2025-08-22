@@ -7,8 +7,8 @@ import numpy  as np
 import pickle as pk
 
 import quicklens as ql
-import phas
-import util
+from . import phas
+from . import util
 
 class library_white_noise():
     """ a library which contains simulated Gaussian noise which is uncorrelated between pixels (and will therefore have a white power spectrum.) """

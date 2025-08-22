@@ -13,9 +13,9 @@
 #  * cd_monitors = monitoring utilities for conjugate descent.
 #
 
-import opfilt_teb
-import multigrid
+from . import opfilt_teb
+from . import multigrid
 
-import cd_monitors
-import cd_solve
-import cg_solve
+from . import cd_monitors
+from . import cd_solve
+from . import cg_solve

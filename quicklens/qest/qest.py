@@ -59,7 +59,7 @@ import numpy as np
 
 from .. import shts
 from .. import maps
-from .. import math
+from ..math import math
 
 def qe_cov_fill_helper( qeXY, qeZA, ret, fX, fY, *args, **kwargs ):
     if maps.is_cfft(ret):
@@ -101,8 +101,8 @@ def qe_cov_fill_helper_flatsky( qeXY, qeZA, ret, fX, fY, switch_ZA=False, conj_Z
     i1_ZA, i2_ZA = { False : (0,1), True : (1,0) }[switch_ZA]
     cfunc_ZA = { False : lambda v : v, True : lambda v : np.conj(v) }[conj_ZA]
 
-    for i in xrange(0, qeXY.ntrm):
-        for j in xrange(0, qeZA.ntrm):
+    for i in range(0, qeXY.ntrm):
+        for j in range(0, qeZA.ntrm):
             term1 = (qeXY.wl[i][0](l, lx, ly) * cfunc_ZA(qeZA.wl[j][i1_ZA](l, lx, ly)) * fX * 
                   np.exp(+1.j*(qeXY.sl[i][0]+(-1)**(conj_ZA)*qeZA.sl[j][i1_ZA])*psi))
             term2 = (qeXY.wl[i][1](l, lx, ly) * cfunc_ZA(qeZA.wl[j][i2_ZA](l, lx, ly)) * fY *
@@ -133,14 +133,14 @@ def qe_cov_fill_helper_fullsky( qeXY, qeZA, ret, fX, fY, switch_ZA=False, conj_Z
     lmax_fX = len(fX)-1
     lmax_fY = len(fY)-1
 
-    for i in xrange(0, qeXY.ntrm):
-        for j in xrange(0, qeZA.ntrm):
+    for i in range(0, qeXY.ntrm):
+        for j in range(0, qeZA.ntrm):
             # l1 part
             tl1min = max(abs(qeXY.sl[i][0]), abs(qeZA.sl[j][i1_ZA]))
             tl1max = min( [qeXY.lmax, qeZA.lmax, lmax_fX] )
 
             cl1 = np.zeros( tl1max+1, dtype=np.complex )
-            for tl1 in xrange(tl1min, tl1max+1):
+            for tl1 in range(tl1min, tl1max+1):
                 cl1[tl1] = qeXY.wl[i][0](tl1) * cfunc_ZA( qeZA.wl[j][i1_ZA](tl1) ) * (2.*tl1+1.) * fX[tl1]
 
             # l2 part
@@ -148,7 +148,7 @@ def qe_cov_fill_helper_fullsky( qeXY, qeZA, ret, fX, fY, switch_ZA=False, conj_Z
             tl2max = min( [qeXY.lmax, qeZA.lmax, lmax_fY] )
 
             cl2 = np.zeros( tl2max+1, dtype=np.complex )
-            for tl2 in xrange(tl2min, tl2max+1):
+            for tl2 in range(tl2min, tl2max+1):
                 cl2[tl2] = qeXY.wl[i][1](tl2) * cfunc_ZA( qeZA.wl[j][i2_ZA](tl2) ) * (2.*tl2+1.) * fY[tl2]
 
             # transform l1 and l2 parts to position space
@@ -159,7 +159,7 @@ def qe_cov_fill_helper_fullsky( qeXY, qeZA, ret, fX, fY, switch_ZA=False, conj_Z
             # multiply and return to cl space
             clL = glq.cl_from_cf( lmax, qeXY.sl[i][2], -(-1)**(conj_ZA)*qeZA.sl[j][2], gp1 * gp2 )
 
-            for L in xrange(0, lmax+1):
+            for L in range(0, lmax+1):
                 ret[L] += clL[L] * qeXY.wl[i][2](L) * cfunc_ZA( qeZA.wl[j][2](L) ) / (32.*np.pi)
 
     return ret
@@ -236,17 +236,17 @@ class qest(object):
         phi    = np.linspace(0., 2.*np.pi, nphi, endpoint=False)
 
         ret = np.zeros( (lmax+1)**2, dtype=np.complex )
-        for i in xrange(0, self.ntrm):
+        for i in range(0, self.ntrm):
             # l_X term
             vlx = shts.util.alm2vlm( barX )
-            for l in xrange(0, lmax_X+1):
+            for l in range(0, lmax_X+1):
                 vlx[l**2:(l+1)**2] *= self.get_wlX(i,l)
             vmx = shts.vlm2map( self.get_slX(i), tht, phi, vlx )
             del vlx
 
             # l_Y term
             vly = shts.util.alm2vlm( barY )
-            for l in xrange(0, lmax_X+1):
+            for l in range(0, lmax_X+1):
                 vly[l**2:(l+1)**2] *= self.get_wlY(i,l)
             vmy = shts.vlm2map( self.get_slY(i), tht, phi, vly )
             del vly
@@ -263,7 +263,7 @@ class qest(object):
             vlm = shts.map2vlm(lmax, self.get_slL(i), tht, phi, vmm)
             del vmm
 
-            for l in xrange(0, lmax+1):
+            for l in range(0, lmax+1):
                 vlm[l**2:(l+1)**2] *= 0.5*self.get_wlL(i,l)
 
             ret += vlm
@@ -301,7 +301,7 @@ class qest(object):
 
         fft = cfft.fft
 
-        for i in xrange(0, self.ntrm):
+        for i in range(0, self.ntrm):
             term1 = self.wl[i][0](l, lx, ly) * barX.fft * np.exp(+1.j*self.sl[i][0]*psi) 
             term2 = self.wl[i][1](l, lx, ly) * barY.fft * np.exp(+1.j*self.sl[i][1]*psi) 
 

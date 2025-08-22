@@ -10,7 +10,7 @@ import numpy  as np
 import pickle as pk
 
 import quicklens as ql
-import util
+from . import util
 
 class library():
     def __init__(self, cl_unl, cl_len, ivfs1, lib_dir=None, ivfs2=None, npad=2):

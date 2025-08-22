@@ -1,11 +1,11 @@
-from sims import *
+from .sims import *
 
-import cmb
-import obs
-import ivf
+from . import cmb
+from . import obs
+from . import ivf
 
-import qest
-import qecl
+from . import qest
+from . import qecl
 
-import phas
-import util
+from . import phas
+from . import util

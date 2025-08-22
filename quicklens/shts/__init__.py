@@ -6,11 +6,11 @@
 import sys
 import numpy as np
 
-import util
+from . import util
 
 try:
     import fsht
-except ImportError, exc:
+except ImportError as exc:
     sys.stderr.write("IMPORT ERROR: " + __file__ + " ({})".format(exc) + ". Try running 'python setup.py install' or 'python setup.py build_ext --inplace' from the quicklens directory.\n")
     
 def vlm2map(s, tht, phi, vlm):

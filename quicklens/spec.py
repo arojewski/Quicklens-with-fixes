@@ -23,8 +23,8 @@ import os, copy, glob, hashlib
 import numpy as np
 import pylab as pl
 
-import util
-import maps
+from . import util
+from . import maps
 
 def deconvolve_beam_from_alms(alm_array, beam):
     '''By A.Baleato. Deconvolve beam from alm's.'''
@@ -115,7 +115,7 @@ class camb_clfile(object):
         assert( (np.shape(tarray)[0]+1) >= lmax )
 
         ncol = np.shape(tarray)[1]
-        ell  = np.arange(lmin, lmax+1, dtype=np.float)
+        ell  = np.arange(lmin, lmax+1, dtype=float)
 
         self.lmax = lmax
         self.ls   = np.concatenate( [ np.arange(0, lmin), ell ] )
@@ -669,7 +669,7 @@ def cl2cfft(cl, pix):
     ell = pix.get_ell().flatten()
     
     ret = maps.cfft( nx=pix.nx, dx=pix.dx,
-                     fft=np.array( np.interp( ell, np.arange(0, len(cl)), cl, right=0 ).reshape(pix.nx, pix.ny), dtype=np.complex ),
+                     fft=np.array( np.interp( ell, np.arange(0, len(cl)), cl, right=0 ).reshape(pix.nx, pix.ny), dtype=complex ),
                      ny=pix.ny, dy=pix.dy )
 
     return ret
@@ -679,9 +679,9 @@ def cl2tebfft(cl, pix):
     tebfft = maps.tebfft( nx=pix.nx, dx=pix.dx, ny=pix.ny, dy=pix.dy )
     ell = tebfft.get_ell().flatten()
     
-    tebfft.tfft = np.array( np.interp( ell, np.arange(0, cl.lmax+1), cl.cltt, right=0 ).reshape(tebfft.tfft.shape), dtype=np.complex )
-    tebfft.efft = np.array( np.interp( ell, np.arange(0, cl.lmax+1), cl.clee, right=0 ).reshape(tebfft.efft.shape), dtype=np.complex )
-    tebfft.bfft = np.array( np.interp( ell, np.arange(0, cl.lmax+1), cl.clbb, right=0 ).reshape(tebfft.bfft.shape), dtype=np.complex )
+    tebfft.tfft = np.array( np.interp( ell, np.arange(0, cl.lmax+1), cl.cltt, right=0 ).reshape(tebfft.tfft.shape), dtype=complex )
+    tebfft.efft = np.array( np.interp( ell, np.arange(0, cl.lmax+1), cl.clee, right=0 ).reshape(tebfft.efft.shape), dtype=complex )
+    tebfft.bfft = np.array( np.interp( ell, np.arange(0, cl.lmax+1), cl.clbb, right=0 ).reshape(tebfft.bfft.shape), dtype=complex )
 
     return maps.tebfft( nx=pix.nx, dx=pix.dx, ffts=[tebfft.tfft, tebfft.efft, tebfft.bfft], ny=pix.ny, dy=pix.dy )
 

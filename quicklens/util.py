@@ -178,7 +178,7 @@ class jit:
 
     def instantiate(self):
         [ctype, cargs, ckwds] = self.__dict__['__jit_args']
-        print 'jit: instantiating ctype =', ctype
+        print( 'jit: instantiating ctype =', ctype)
         self.__dict__['__jit_obj'] = ctype( *cargs, **ckwds )
         del self.__dict__['__jit_args']
 
@@ -261,7 +261,7 @@ try:
         out = io.BytesIO(text); out.seek(0); return np.load(out)
     sqlite3.register_converter("array", convert_array)
     
-except ImportError, exc:
+except ImportError as exc:
     sys.stderr.write("IMPORT ERROR: " + __file__ + " (" + str(exc) + ")\n")
 
 class npdb():

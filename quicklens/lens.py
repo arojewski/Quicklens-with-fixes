@@ -6,8 +6,8 @@ import numpy as np
 import scipy.interpolate
 import scipy.misc
 
-import maps
-import qest
+from . import maps
+from . import qest
 
 def calc_lensing_b_first_order( e, phi ):
     """ evaluate the lensed B-mode to first-order in phi on the flat-sky.

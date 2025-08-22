@@ -15,7 +15,7 @@ import numpy as np
 import pickle as pk
 
 from .. import mpi
-import util
+from . import util
 
 class library():
     """ library for maintaining the state of the numpy random number generator. """
@@ -74,7 +74,7 @@ class library():
             assert(mpi.rank == 0)
             state = self.get_state(idx-1)
             np.random.set_state(state)
-            print "quicklens::sims::phas: caching state %d"%idx
+            print( "quicklens::sims::phas: caching state %d"%idx)
             self.random(size=self.size)
             pk.dump( np.random.get_state(), open(self.lib_dir + "/state_%04d.pk"%idx, 'w') )
         return pk.load( open(self.lib_dir + "/state_%04d.pk"%idx, 'r') )

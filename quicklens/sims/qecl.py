@@ -10,7 +10,8 @@ import numpy  as np
 import pickle as pk
 
 import quicklens as ql
-import util
+from . import util
+
 
 class library():
     """ a library for taking the auto- or cross-spectrum of the quadratic estimator
@@ -132,7 +133,7 @@ class library():
         tfname = self.lib_dir + ("/cache_lcl_%+d_%s.pk" % (hash(args + tuple(frozenset(kwargs.items()))), "get_qcr"))
         tfname = tfname.replace('+', 'p').replace('-', 'm')
         if not os.path.exists(tfname):
-            print "caching lm: %s" % tfname
+            print( "caching lm: %s" % tfname)
             lm = ql.spec.lcl( self.lmax_lcl, self.get_qcr(*args, **kwargs) ) 
             pk.dump( lm, open(tfname,'w') )
         return pk.load( open(tfname,'r') )
@@ -169,7 +170,7 @@ class library():
         tfname = self.lib_dir + ("/cache_lcl_%+d_%s.pk" % (hash(args + tuple(frozenset(kwargs.items()))), "get_sim_qcl"))
         tfname = tfname.replace('+', 'p').replace('-', 'm')
         if not os.path.exists(tfname):
-            print "caching lm: %s" % tfname
+            print( "caching lm: %s" % tfname)
             lm = ql.spec.lcl( self.lmax_lcl, self.get_sim_qcl(*args, **kwargs) )
             pk.dump( lm, open(tfname,'w') )
         return pk.load( open(tfname,'r') )
@@ -236,7 +237,7 @@ class library():
         tfname = tfname.replace('+', 'p').replace('-', 'm')
                 
         if not os.path.exists(tfname):
-            print "get_sim_ncl_lcl caching lm for kA=%s, kB=%s, i=%d : %s" % (kA, kB, i, tfname)
+            print( "get_sim_ncl_lcl caching lm for kA=%s, kB=%s, i=%d : %s" % (kA, kB, i, tfname))
 
             @ql.util.memoize
             def get_tebfts(i):

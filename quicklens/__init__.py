@@ -1,12 +1,12 @@
-import math
-import util
-import mpi
+from . import math
+from . import util
+from . import mpi
 
-import maps
-import spec
-import qest
-import shts
+from . import maps
+from . import spec
+from . import qest
+from . import shts
 
-import lens
-import cinv
-import sims
+from . import lens
+from . import cinv
+from . import sims

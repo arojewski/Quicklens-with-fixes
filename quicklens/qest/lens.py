@@ -7,7 +7,7 @@
 # polarization (E,B) from Hu et. al. http://arxiv.org/abs/astro-ph/0111606
 
 import numpy as np
-import qest
+from .. import qest
 
 
 class phi_TT(qest.qest):
@@ -20,8 +20,8 @@ class phi_TT(qest.qest):
         self.lmax = len(cltt)-1
         self.ntrm = 4
 
-        self.wl = { i : {} for i in xrange(0, self.ntrm) }
-        self.sl = { i : {} for i in xrange(0, self.ntrm) }
+        self.wl = { i : {} for i in range(0, self.ntrm) }
+        self.sl = { i : {} for i in range(0, self.ntrm) }
 
         self.wl[0][0] = self.wc_ml; self.sl[0][0] = +1
         self.wl[0][1] = self.wo_d2; self.sl[0][1] = +0
@@ -59,8 +59,8 @@ class phi_TT_s0(qest.qest):
         self.lmax = len(cltt)-1
         self.ntrm = 4
 
-        self.wl = { i : {} for i in xrange(0, self.ntrm) }
-        self.sl = { i : [0,0,0] for i in xrange(0,self.ntrm) }
+        self.wl = { i : {} for i in range(0, self.ntrm) }
+        self.sl = { i : [0,0,0] for i in range(0,self.ntrm) }
 
         self.wl[0][0] = self.wc_lx
         self.wl[0][1] = self.wo_m1
@@ -99,8 +99,8 @@ class phi_TE(qest.qest):
         self.lmax = len(clte)-1
         self.ntrm = 6
 
-        self.wl = { i : {} for i in xrange(0, self.ntrm) }
-        self.sl = { i : {} for i in xrange(0, self.ntrm) }
+        self.wl = { i : {} for i in range(0, self.ntrm) }
+        self.sl = { i : {} for i in range(0, self.ntrm) }
 
         # t de
         self.wl[0][0] = self.wc_m3; self.sl[0][0] = +3
@@ -151,8 +151,8 @@ class phi_TB(qest.qest):
         self.lmax = len(clte)-1
         self.ntrm = 4
 
-        self.wl = { i : {} for i in xrange(0, self.ntrm) }
-        self.sl = { i : {} for i in xrange(0, self.ntrm) }
+        self.wl = { i : {} for i in range(0, self.ntrm) }
+        self.sl = { i : {} for i in range(0, self.ntrm) }
 
         # t de
         self.wl[0][0] = self.wc_m3; self.sl[0][0] = +3
@@ -192,8 +192,8 @@ class phi_EE(qest.qest):
         self.lmax = len(clee)-1
         self.ntrm = 8
 
-        self.wl = { i : {} for i in xrange(0, self.ntrm) }
-        self.sl = { i : {} for i in xrange(0, self.ntrm) }
+        self.wl = { i : {} for i in range(0, self.ntrm) }
+        self.sl = { i : {} for i in range(0, self.ntrm) }
 
         # first term.
         self.wl[0][0] = self.wo_d4; self.sl[0][0] = -2
@@ -248,8 +248,8 @@ class phi_EB(qest.qest):
         self.lmax = len(clee)-1
         self.ntrm = 4
 
-        self.wl = { i : {} for i in xrange(0, self.ntrm) }
-        self.sl = { i : {} for i in xrange(0, self.ntrm) }
+        self.wl = { i : {} for i in range(0, self.ntrm) }
+        self.sl = { i : {} for i in range(0, self.ntrm) }
 
         # t de
         self.wl[0][0] = self.wc_m3; self.sl[0][0] = +3
@@ -286,7 +286,7 @@ class phi_ET(phi_TE):
              * clte = lensed TE power spectrum.
         """
         super(phi_ET, self).__init__(clte)
-        for i in xrange(0,self.ntrm):
+        for i in range(0,self.ntrm):
             twl = self.wl[i][0]
             tsl = self.sl[i][0]
             
@@ -303,7 +303,7 @@ class phi_BT(phi_TB):
              * clte = lensed TE power spectrum.
         """
         super(phi_BT, self).__init__(clte)
-        for i in xrange(0,self.ntrm):
+        for i in range(0,self.ntrm):
             twl = self.wl[i][0]
             tsl = self.sl[i][0]
             
@@ -320,7 +320,7 @@ class phi_BE(phi_EB):
              * clee = lensed EE power spectrum.
         """
         super(phi_BE, self).__init__(clee)
-        for i in xrange(0,self.ntrm):
+        for i in range(0,self.ntrm):
             twl = self.wl[i][0]
             tsl = self.sl[i][0]
             
@@ -340,8 +340,8 @@ class psi_TT(qest.qest):
         self.lmax = len(cltt)-1
         self.ntrm = 4
 
-        self.wl = { i : {} for i in xrange(0, self.ntrm) }
-        self.sl = { i : {} for i in xrange(0, self.ntrm) }
+        self.wl = { i : {} for i in range(0, self.ntrm) }
+        self.sl = { i : {} for i in range(0, self.ntrm) }
 
         self.wl[0][0] = self.wc_m1; self.sl[0][0] = +1
         self.wl[0][1] = self.wo_d2; self.sl[0][1] = +0
@@ -383,8 +383,8 @@ class blen_EP(qest.qest):
         
         self.ntrm = 4
 
-        self.wl = { i : {} for i in xrange(0, self.ntrm) }
-        self.sl = { i : {} for i in xrange(0, self.ntrm) }
+        self.wl = { i : {} for i in range(0, self.ntrm) }
+        self.sl = { i : {} for i in range(0, self.ntrm) }
 
         # t de
         self.wl[0][0] = self.wc_m3; self.sl[0][0] = +3
@@ -429,8 +429,8 @@ class blen_EX(qest.qest):
         
         self.ntrm = 4
 
-        self.wl = { i : {} for i in xrange(0, self.ntrm) }
-        self.sl = { i : {} for i in xrange(0, self.ntrm) }
+        self.wl = { i : {} for i in range(0, self.ntrm) }
+        self.sl = { i : {} for i in range(0, self.ntrm) }
 
         # t de
         self.wl[0][0] = self.wc_m3; self.sl[0][0] = +3

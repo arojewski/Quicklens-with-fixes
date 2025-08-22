@@ -6,9 +6,9 @@ import os
 import numpy as np
 import pickle as pk
 
-import sims
-import phas
-import util
+from . import sims
+from . import phas
+from . import util
 
 import quicklens as ql
 

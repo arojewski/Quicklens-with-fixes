@@ -112,7 +112,7 @@ def pad_ft(a, npad=2):
     nx,ny = a.shape
     p = np.zeros([nx*npad,ny*npad], dtype=a.dtype)
     p[0:nx,0:ny] = np.fft.fftshift(a)
-    p = np.roll(np.roll(p,-nx/2,axis=0),-ny/2,axis=1)
+    p = np.roll(np.roll(p,-nx//2,axis=0),-ny//2,axis=1)
     return p
 
 def unpad_ft(a, npad=2):
@@ -121,8 +121,8 @@ def unpad_ft(a, npad=2):
     nx_pad,ny_pad = a.shape
     nx = int(nx_pad/npad); ny=int(ny_pad/npad)
     return np.roll(np.roll(
-            (np.roll(np.roll(a,nx/2,axis=0),ny/2,axis=1)[0:nx,0:ny]),
-            nx/2,axis=0),ny/2,axis=1)
+            (np.roll(np.roll(a,nx//2,axis=0),ny//2,axis=1)[0:nx,0:ny]),
+            nx//2,axis=0),ny//2,axis=1)
 
 def convolve_padded(f, g, npad=2):
     """ convolve two 2D complex Fourier transforms 'f' and 'g', using padding by a factor of npad to avoid aliasing.

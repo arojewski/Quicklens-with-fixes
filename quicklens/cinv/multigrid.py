@@ -12,8 +12,8 @@
 import sys, os, re, glob, copy
 import numpy as np
 
-import cd_solve
-import cd_monitors
+from . import cd_solve
+from . import cd_monitors
 from .. import util
 from .. import maps
 
