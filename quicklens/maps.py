@@ -504,9 +504,9 @@ class tebfft(pix):
         super( tebfft, self ).__init__(nx, dx, ny=ny, dy=dy)
 
         if ffts is None:
-            self.tfft = np.zeros( (self.ny, self.nx//2+1), dtype=np.complex )
-            self.efft = np.zeros( (self.ny, self.nx//2+1), dtype=np.complex )
-            self.bfft = np.zeros( (self.ny, self.nx//2+1), dtype=np.complex )
+            self.tfft = np.zeros( (self.ny, self.nx//2+1), dtype=complex )
+            self.efft = np.zeros( (self.ny, self.nx//2+1), dtype=complex )
+            self.bfft = np.zeros( (self.ny, self.nx//2+1), dtype=complex )
         else:
             [self.tfft, self.efft, self.bfft] = ffts
 
@@ -660,9 +660,9 @@ class tebfft(pix):
 
     def inverse(self):
         """ return a new tebfft for which all elements have been set to their inverses, with exception of zeros which are untouched. """
-        tfft_inv = np.zeros(self.tfft.shape, dtype=np.complex); tfft_inv[self.tfft != 0] = 1./self.tfft[self.tfft != 0]
-        efft_inv = np.zeros(self.efft.shape, dtype=np.complex); efft_inv[self.efft != 0] = 1./self.efft[self.efft != 0]
-        bfft_inv = np.zeros(self.bfft.shape, dtype=np.complex); bfft_inv[self.bfft != 0] = 1./self.bfft[self.bfft != 0]
+        tfft_inv = np.zeros(self.tfft.shape, dtype=complex); tfft_inv[self.tfft != 0] = 1./self.tfft[self.tfft != 0]
+        efft_inv = np.zeros(self.efft.shape, dtype=complex); efft_inv[self.efft != 0] = 1./self.efft[self.efft != 0]
+        bfft_inv = np.zeros(self.bfft.shape, dtype=complex); bfft_inv[self.bfft != 0] = 1./self.bfft[self.bfft != 0]
 
         ret = tebfft( self.nx, self.dx,
                       [tfft_inv, efft_inv, bfft_inv],
@@ -793,7 +793,7 @@ class rfft(pix):
         super( rfft, self ).__init__(nx, dx, ny=ny, dy=dy)
 
         if fft is None:
-            fft = np.zeros( (self.ny, self.nx//2+1), dtype=np.complex )
+            fft = np.zeros( (self.ny, self.nx//2+1), dtype=complex )
         self.fft = fft
 
         assert( (self.ny, self.nx//2+1) == self.fft.shape )
@@ -911,7 +911,7 @@ class rfft(pix):
 
     def get_cfft( self ):
         """ return the complex FFT. """
-        fft = np.zeros( (self.ny, self.nx), dtype=np.complex )
+        fft = np.zeros( (self.ny, self.nx), dtype=complex )
         fft[:,0:(self.nx//2+1)] = self.fft[:,:]
         fft[0,(self.nx//2+1):]  = np.conj(self.fft[0,1:self.nx//2][::-1])
         fft[1:,(self.nx//2+1):]  = np.conj(self.fft[1:,1:self.nx//2][::-1,::-1])
@@ -943,7 +943,7 @@ class cfft(pix):
         super( cfft, self ).__init__(nx, dx, ny=ny, dy=dy)
 
         if fft is None:
-            fft = np.zeros( (self.ny, self.nx), dtype=np.complex )
+            fft = np.zeros( (self.ny, self.nx), dtype=complex )
         self.fft = fft
 
         assert( (self.ny, self.nx) == self.fft.shape )
