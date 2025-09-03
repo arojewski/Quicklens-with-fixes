@@ -139,7 +139,7 @@ def qe_cov_fill_helper_fullsky( qeXY, qeZA, ret, fX, fY, switch_ZA=False, conj_Z
             tl1min = max(abs(qeXY.sl[i][0]), abs(qeZA.sl[j][i1_ZA]))
             tl1max = min( [qeXY.lmax, qeZA.lmax, lmax_fX] )
 
-            cl1 = np.zeros( tl1max+1, dtype=np.complex )
+            cl1 = np.zeros( tl1max+1, dtype=complex )
             for tl1 in range(tl1min, tl1max+1):
                 cl1[tl1] = qeXY.wl[i][0](tl1) * cfunc_ZA( qeZA.wl[j][i1_ZA](tl1) ) * (2.*tl1+1.) * fX[tl1]
 
@@ -147,7 +147,7 @@ def qe_cov_fill_helper_fullsky( qeXY, qeZA, ret, fX, fY, switch_ZA=False, conj_Z
             tl2min = max(abs(qeXY.sl[i][1]), abs(qeZA.sl[j][i2_ZA]))
             tl2max = min( [qeXY.lmax, qeZA.lmax, lmax_fY] )
 
-            cl2 = np.zeros( tl2max+1, dtype=np.complex )
+            cl2 = np.zeros( tl2max+1, dtype=complex )
             for tl2 in range(tl2min, tl2max+1):
                 cl2[tl2] = qeXY.wl[i][1](tl2) * cfunc_ZA( qeZA.wl[j][i2_ZA](tl2) ) * (2.*tl2+1.) * fY[tl2]
 
@@ -235,7 +235,7 @@ class qest(object):
         tht    = np.arccos(glq.zvec)
         phi    = np.linspace(0., 2.*np.pi, nphi, endpoint=False)
 
-        ret = np.zeros( (lmax+1)**2, dtype=np.complex )
+        ret = np.zeros( (lmax+1)**2, dtype=complex )
         for i in range(0, self.ntrm):
             # l_X term
             vlx = shts.util.alm2vlm( barX )
