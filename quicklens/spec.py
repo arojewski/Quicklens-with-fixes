@@ -115,7 +115,7 @@ class camb_clfile(object):
         assert( (np.shape(tarray)[0]+1) >= lmax )
 
         ncol = np.shape(tarray)[1]
-        ell  = np.arange(lmin, lmax+1, dtype=np.float)
+        ell  = np.arange(lmin, lmax+1, dtype=float)
 
         self.lmax = lmax
         self.ls   = np.concatenate( [ np.arange(0, lmin), ell ] )
