@@ -235,7 +235,7 @@ class library():
                 Return the vlm's.
         """
         lmax = len(self.cl_unl.cltt)-1
-        ret = np.zeros( (lmax+1)**2, dtype=np.complex )
+        ret = np.zeros( (lmax+1)**2, dtype=complex )
         for tqe, tfe in self.get_qe(k):
             if not isinstance(tqe, tuple):
                 ret += self.get_qft_full_sky( tqe, tft1, eft1, bft1, tft2, eft2, bft2 ) * tfe
