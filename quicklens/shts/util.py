@@ -59,7 +59,7 @@ def lmax2nlm(lmax):
 def alm2vlm( glm, clm=None ):
     """ convert alm format -> vlm format coefficients. glm is gradient mode, clm is curl mode. """
     lmax = nlm2lmax(len(glm))
-    ret = np.zeros( (lmax+1)**2, dtype=np.complex )
+    ret = np.zeros( (lmax+1)**2, dtype=complex )
     for l in range(0, lmax+1):
         ms = np.arange(1,l+1)
         ret[l*l+l]    = -glm[l]
@@ -80,8 +80,8 @@ def vlm2alm( vlm ):
     """ convert vlm format coefficients -> alm. returns gradient and curl pair (glm, clm). """
     lmax = int(np.sqrt(len(vlm))-1)
 
-    glm = np.zeros( lmax2nlm(lmax), dtype=np.complex )
-    clm = np.zeros( lmax2nlm(lmax), dtype=np.complex )
+    glm = np.zeros( lmax2nlm(lmax), dtype=complex )
+    clm = np.zeros( lmax2nlm(lmax), dtype=complex )
 
     for l in range(0, lmax+1):
         ms = np.arange(1,l+1)
@@ -115,7 +115,7 @@ def rlm2alm(rlm):
     lmax = int( np.sqrt(len(rlm))-1 )
     assert( (lmax+1)**2 == len(rlm) )
 
-    alm = np.zeros( lmax2nlm(lmax), dtype=np.complex )
+    alm = np.zeros( lmax2nlm(lmax), dtype=complex )
 
     ls  = np.arange(0, lmax+1, dtype=np.int64)
     l2s = ls**2
